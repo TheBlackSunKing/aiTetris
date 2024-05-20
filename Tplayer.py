@@ -25,13 +25,19 @@ class tplayer():
 
     def setMaxScoreChoice(self, r, x, score, direction, tetris):
 
-        #Cuenta que tan alto esta la linea
-        self.maxRow = tetris.calculateNumberOfRows()
+
+       
         #Weightedscore = 1000000 + -(20-self.maxRow)*(20-self.maxRow)*500 +self.yfactor*10000 + tetris.erasedLinedCount*20000 - tetris.trash()*100000 - tetris.gameover*1000000
         #Weightedscore = 1000000 + -(20-self.maxRow)*(20-self.maxRow)*500 +self.yfactor*10000 + tetris.erasedLinedCount*1000000 - tetris.trash()*50000 - tetris.gameover*1000000
         #Weightedscore = 1000000 + -(20-self.maxRow)*25000 +self.yfactor*25000 + tetris.erasedLinedCount*tetris.erasedLinedCount*1000000 - (tetris.trash()-(20-self.maxRow)/4)*40000 - tetris.gameover*1000000
         #Weightedscore = 1000000 + -(20-self.maxRow)*(20-self.maxRow)*1000 +self.yfactor*10000 + tetris.erasedLinedCount*tetris.erasedLinedCount*1000000 - (tetris.trash()-(20-self.maxRow)/4)*40000 - tetris.gameover*1000000
-        Weightedscore = 1000000 + -(20-self.maxRow)*25000 +self.yfactor*25000 + tetris.erasedLinedCount*tetris.erasedLinedCount*1000000 - (tetris.trash()-(20-self.maxRow)/4)*40000 - tetris.gameover*1000000
+        
+        #La formula es base 1000000 - La Altura resultante + Cuanto cayo el bloque +
+        #La cantidad de lineas borradas^2 - (Cantidad de Basure-(Altura resultante/4)) - Fin del juego
+        self.maxRow = tetris.calculateNumberOfRows()
+        Weightedscore = 1000000 + -(20-self.maxRow)*25000 +self.yfactor*25000 + \
+            tetris.erasedLinedCount*tetris.erasedLinedCount*40000 - (tetris.trash()-(20-self.maxRow)/4)*45000 - tetris.gameover*1000000
+        
         if Weightedscore == self.maxScoreChoice[2]:
             if randint (0,1) == 0:
                 nextscore = Weightedscore
@@ -122,7 +128,7 @@ class tplayer():
                         self.tempScore = tetrisinstance.score
                         self.status = "thinking"
                         self.step = 4
-            tetrisinstance.tick()
+        tetrisinstance.tick()
 
 
         
