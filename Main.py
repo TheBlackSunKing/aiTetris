@@ -7,7 +7,7 @@ from random import choice, randrange, randint, Random
 import pygame
 from pygame.locals import *
 
- 
+pygame.init()    
 
 
 
@@ -47,7 +47,7 @@ class Soundboard:
             self.loseSound.play()
             tetrisinstance.loseSound=False
 def run():
-    pygame.init()        
+        
 
     music = Music("TetrisProjectMusic.mp3")
     soundboard = Soundboard()
@@ -56,7 +56,6 @@ def run():
     fpsClock = pygame.time.Clock()
     font = pygame.font.SysFont('Comic Sans MS', 30)
     font_small = pygame.font.SysFont('Comic Sans MS', 22)
-    clock = pygame.time.Clock()
     title_score = font.render('Puntuacion', True, pygame.Color('green'))
 
 
@@ -69,7 +68,6 @@ def run():
     FPS = 60
     grid = [pygame.Rect(x * TILE, y * TILE, TILE, TILE) for x in range(W) for y in range(H)]
     grid2 = [pygame.Rect(x * TILE + 20*TILE , y * TILE, TILE, TILE) for x in range(W) for y in range(H)]
-    width, height = 640, 480
     screen = pygame.display.set_mode((W*TILE*3, H*TILE))
     figure_rect = pygame.Rect(0, 0, TILE - 2, TILE - 2)
     tetrisnormal = tetris()
