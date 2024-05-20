@@ -105,7 +105,7 @@ class tplayer():
 
                 if self.maxScoreChoice[1]> 0:
                 #for i in range (self.maxScoreChoice[1]):
-                    print ("MaxScoreChoice elected: " + str(self.maxScoreChoice) )
+
                     tetrisinstance.dx = 1*self.maxScoreChoice[3]
                     self.maxScoreChoice[1]-=1
                     #tetrisinstance.tick()
